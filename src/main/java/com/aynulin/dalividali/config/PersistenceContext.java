@@ -20,10 +20,12 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = {
+        "com.aynulin.dalividali.user.repository"
 })
 @EnableTransactionManagement
 public class PersistenceContext {
     private static final String[] PROPERTY_PACKAGES_TO_SCAN = {
+            "com.aynulin.dalividali.user.model"
     };
 
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

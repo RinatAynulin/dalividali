@@ -10,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @ComponentScan(basePackages = {
 })
-@Import({PersistenceContext.class, WebAppContext.class })
+@Import({PersistenceContext.class, WebAppContext.class, SocialContext.class, SecurityContext.class})
 @PropertySource("classpath:application.properties")
 public class ApplicationContext {
     @Bean
