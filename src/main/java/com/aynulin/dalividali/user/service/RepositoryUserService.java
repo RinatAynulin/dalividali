@@ -1,5 +1,7 @@
 package com.aynulin.dalividali.user.service;
 
+import com.aynulin.dalividali.app.model.Country;
+import com.aynulin.dalividali.app.model.UserCountry;
 import com.aynulin.dalividali.security.dto.RegistrationForm;
 import com.aynulin.dalividali.user.model.User;
 import com.aynulin.dalividali.user.repository.UserRepository;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 /**
  * Created by Aynulin on 31.01.2017.
@@ -62,6 +66,19 @@ public class RepositoryUserService implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return repository.findByEmail(email);
+    }
+
+    @Override
+    public Set<UserCountry> getUserCountriesByEmail(String email) {
+        User user = repository.findByEmail(email);
+        return user.getUserCountries();
+    }
+
+    @Override
+    public void addUserCountry(String email, UserCountry userCountry) {
+        User user = repository.findByEmail(email);
+        user.addUserCountry(userCountry);
+        repository.save(user);
     }
 
     private boolean emailExist(String email) {

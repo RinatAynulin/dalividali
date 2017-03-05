@@ -9,6 +9,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = {
+        "com.aynulin.dalividali.app.service",
+        "com.aynulin.dalividali.user.service"
 })
 @Import({PersistenceContext.class, WebAppContext.class, SocialContext.class, SecurityContext.class})
 @PropertySource("classpath:application.properties")

@@ -1,7 +1,11 @@
 package com.aynulin.dalividali.user.service;
 
+import com.aynulin.dalividali.app.model.Country;
+import com.aynulin.dalividali.app.model.UserCountry;
 import com.aynulin.dalividali.security.dto.RegistrationForm;
 import com.aynulin.dalividali.user.model.User;
+
+import java.util.Set;
 
 /**
  * Created by Aynulin on 31.01.2017.
@@ -17,4 +21,8 @@ public interface UserService {
     public User registerNewUserAccount(RegistrationForm userAccountData) throws DuplicateEmailException;
 
     public User getUserByEmail(String email);
+
+    public Set<UserCountry> getUserCountriesByEmail(String email);
+
+    public void addUserCountry(String email, UserCountry userCountry);
 }
