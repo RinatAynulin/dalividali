@@ -5,7 +5,11 @@ package com.aynulin.dalividali.user.model;
  */
 
 
+import com.aynulin.dalividali.app.model.UserCountry;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_accounts")
@@ -34,6 +38,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "sign_in_provider", length = 20)
     private SocialMediaService signInProvider;
+
+    @OneToMany(mappedBy = "primaryKey.user",
+            cascade = CascadeType.ALL)
+    private Set<UserCountry> userCountries = new HashSet<>();
 
     public User() {
 
@@ -71,6 +79,17 @@ public class User {
         return signInProvider;
     }
 
+    public Set<UserCountry> getUserCountries() {
+        return userCountries;
+    }
+
+    public void setUserCountries(Set<UserCountry> userCountries) {
+        this.userCountries = userCountries;
+    }
+
+    public void addUserCountry(UserCountry userCountry) {
+        this.userCountries.add(userCountry);
+    }
 
     @Override
     public String toString() {
